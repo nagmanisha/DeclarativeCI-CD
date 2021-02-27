@@ -16,14 +16,14 @@ pipeline {
     }
   stage('Build Docker Image'){
     steps{
-      sh 'docker build -t nagmanisha/dileep-spring:$BUILD_NUMBER .'
+      sh 'docker build -t nagmanisha/manisha-spring:$BUILD_NUMBER .'
     }
   }
   stage('Docker Container'){
     steps{
       withCredentials([usernameColonPassword(credentialsId: 'docker_nagmanisha_creds', variable: 'DOCKER_PASS')]) {
-      sh 'docker push nagmanisha/dileep-spring:$BUILD_NUMBER'
-	  sh 'docker run -d -p 8050:8050 --name SpringbootApp nagmanisha/dileep-spring:$BUILD_NUMBER'
+      sh 'docker push nagmanisha/manisha-spring:$BUILD_NUMBER'
+	  sh 'docker run -d -p 8050:8050 --name SpringbootApp nagmanisha/manisha-spring:$BUILD_NUMBER'
     }
     }
   }  
